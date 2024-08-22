@@ -58,7 +58,11 @@ struct NavigationRoutePushModifier<Route: Routable>: ViewModifier {
 }
 
 public extension View {
-  func navigate<Destination: Routable>(_ routeType: Destination?.Type, route: Binding<Destination?>) -> some View {
+  func push<Destination: Routable>(route: Binding<Destination?>) -> some View {
+    self.navigate(type(of: route.wrappedValue), route: route)
+  }
+  
+  internal func navigate<Destination: Routable>(_ routeType: Destination?.Type, route: Binding<Destination?>) -> some View {
     self.modifier(NavigationRoutePushModifier(route: route))
   }
 }

@@ -27,7 +27,7 @@ struct NavigationPredefinedPushModifier<Destination: View>: ViewModifier {
 }
 
 public extension View {
-  func navigate<Destination: View>(
+  func push<Destination: View>(
     isActive: Binding<Bool>,
     @ViewBuilder destination: @escaping () -> Destination
   ) -> some View {
