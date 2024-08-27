@@ -31,6 +31,11 @@ public extension View {
     isActive: Binding<Bool>,
     @ViewBuilder destination: @escaping () -> Destination
   ) -> some View {
-    self.modifier(NavigationPredefinedPushModifier(isActive: isActive, destination: destination()))
+    self.modifier(
+      NavigationPredefinedPushModifier(
+        isActive: isActive,
+        destination: isActive.wrappedValue ? destination() : nil
+      )
+    )
   }
 }
